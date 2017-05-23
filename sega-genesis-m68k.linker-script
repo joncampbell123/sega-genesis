@@ -1,0 +1,15 @@
+OUTPUT_FORMAT("binary")
+OUTPUT_ARCH(m68k)
+ENTRY(_start)
+SECTIONS
+{
+  . = 0;
+  output : {
+    interrupt_vectors.o(.text)
+    cartridge_header.o(.text)
+  }
+
+  .text 0x000200 : { *(.text) }
+  .data : { *(.data) }
+  .bss : { *(.bss) }
+}
